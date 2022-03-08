@@ -1,0 +1,46 @@
+.newOrderForm{
+    position:absolute;
+    top:20%;
+    left: 40%;
+}
+
+table{
+    border: 1px solid black;
+}
+
+th{
+    border: 1px solid black;
+    width:170px;
+    text-align:center;
+}
+
+td{
+    border: 1px solid black;
+    text-align: center;
+    width: 170px;
+}
+
+.btn{
+    position: fixed;
+    left:80%;    
+    top: 8%;
+}
+
+.headerClass{
+    position: absolute;
+    top: 51%;
+    left:20%;
+}
+
+.bodyClass{
+    position: absolute;
+    top: 55%;
+    left:20%;
+    height: 100px;       /* The height of the chosen cars form*/
+    overflow-y: auto;    /* Trigger vertical scroll*/
+    overflow-x: hidden;  /* Hide the horizontal scroll*/
+}
+
+
+
+

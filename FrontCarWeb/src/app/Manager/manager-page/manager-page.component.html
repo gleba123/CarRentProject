@@ -1,0 +1,126 @@
+
+
+<!-- main buttons of the manager -->
+<h1><u><b>Welcome Back</b></u></h1>
+<div class="mainManagerMenuDiv">
+    <input #ShowUsers class="btn btn-secondary" type="button" value="Show All Users" (click)="GetAllUserFunc()" (click)="fun1(ShowUsers.value)"
+        routerLink="UpdateUser" routerLinkActive="active-link">&nbsp;
+    <input #ShowCars class="btn btn-secondary" type="button" value="Show All Cars" routerLink="UpdateCar" (click)="GetAllCarsFunc()"
+        (click)="fun1(ShowCars.value)" routerLinkActive="active-link">&nbsp;
+    <input #ShowOrders type="button" class="btn btn-secondary" value="Show All Orders" (click)="GetAllOrdersFunc()"
+        (click)="fun1(ShowOrders.value)" routerLink="UpdateOrder" routerLinkActive="active-link">
+</div>
+
+<p>
+    <!-- give the promotion to the childs routes -->
+    <router-outlet></router-outlet>
+
+</p>
+
+<!-- Show all Users for the Manager -->
+<form *ngIf="chooseAction=='Show All Users'">
+    <table>
+        <thead class="userTableHeader">
+            <tr>
+                <th>User Costumer ID:</th>
+                <th>User Identity:</th>
+                <th>Nick Name:</th>
+                <th>Pasword:</th>
+                <th>Full Name:</th>
+                <th>Birth date:</th>
+                <th>Gender:</th>
+                <th>Email:</th>
+                <th>Role:</th>
+                <th>Picture:</th>
+            </tr>
+        </thead>
+        <tbody class="userTableBodyData">
+            <tr *ngFor="let user of getUsers">
+                <td>{{user.userId}}</td>
+                <td>{{user.userTz}}</td>
+                <td>{{user.nickName}}</td>
+                <td>{{user.password}}</td>
+                <td>{{user.fullName}}</td>
+                <td>{{user.bday}}</td>
+                <td>{{user.gender}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
+                <td><img src='{{user.picture}}'></td>
+
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+<!-- Show all Cars for the Manager -->
+
+<form *ngIf="chooseAction=='Show All Cars'">
+    <div class="searchCarsInput">
+        <label>Search type car: </label>
+        <input type="text" name="search" [(ngModel)]="FilteringManufactor">
+    </div>
+
+    <table>
+        <thead class="carsTableHeader">
+            <tr>
+                <th>Quantity:</th>
+                <th>Car license</th>
+                <th>Manufactor</th>
+                <th>Model</th>
+                <th>Km</th>
+                <th>Year</th>
+                <th>Price</th>
+                <th>Delay Price</th>
+                <th>Available</th>
+                <th>Rentable</th>
+                <th>Picture</th>
+            </tr>
+        </thead>
+        <tbody class="carsTableBodyData">
+            <tr *ngFor="let i of getCars|searchCarPipe:FilteringManufactor">
+                <td>{{i.quantity}}</td>
+                <td>{{i.carNumber}}</td>
+                <td>{{i.manufactor}}</td>
+                <td>{{i.model}}</td>
+                <td>{{i.km}}</td>
+                <td>{{i.year}}</td>
+                <td>{{i.dayPrice}}</td>
+                <td>{{i.delayPrice}}</td>
+                <td>{{i.available}}</td>
+                <td>{{i.rentable}}</td>
+                <td><img src='{{i.picture}}'></td>
+
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+<!-- show all orders -->
+
+<form class="orderForm" *ngIf="chooseAction=='Show All Orders'">
+    <table>
+        <thead class="orderTableHeader">
+            <tr>
+                <th>User ID:</th>
+                <th>Order number:</th>
+                <th>Car Number:</th>
+                <th>Start Rent Date:</th>
+                <th>Return Date:</th>
+                <th>Real Return Date</th>
+            </tr>
+        </thead>
+        <tbody class="orderTableBodyData">
+            <tr *ngFor="let order of OrderProp">
+                <td>{{order.userTz}}</td>
+                <td>{{order.orderNum}}</td>
+                <td>{{order.carNum}}</td>
+                <td>{{order.startRentDate}}</td>
+                <td>{{order.returnDate}}</td>
+                <td>{{order.realReturnDate}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+
+</form>

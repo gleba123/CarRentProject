@@ -1,0 +1,24 @@
+<!-- show the user name that connected -->
+<span class="showUserLogedIn">{{allUsersService.userNameSaver}}</span>
+<div class="MainDiv">
+     <!-- after connection we outo get to the home page -->
+     <h1 class="Header" routerLink="/Home"><b>Pink Car</b></h1>
+     <!-- all the main buttons , couple of them not allways seen becouse you need special promotion like manager and employee -->
+     <div class="NavBar">
+          
+          <input type="button" value="Manager" routerLink="Manager" routerLinkActive="active-link"
+               *ngIf="authenticationsService.isAouthenticated" class="btn btn-secondary">&nbsp;
+          <input type="button" value="Employee" routerLink="Employee" routerLinkActive="active-link"
+               *ngIf="empAuthenticationService.isAouthenticated" class="btn btn-secondary">&nbsp;
+          <input type="button" value="Home" routerLink="Home" routerLinkActive="active-link" class="btn btn-secondary">&nbsp;
+          <input type="button" value="Orders" routerLink="Orders" routerLinkActive="active-link" 
+          *ngIf="!userAuthenticationService.isAouthenticated" class="btn btn-secondary">&nbsp;
+          <input type="button" value="About" routerLink="about" routerLinkActive="active-link" class="btn btn-secondary">&nbsp;
+          <input type="button" value="Sign in" routerLink="SignIn" routerLinkActive="active-link"
+               *ngIf="authenticationsService.signed && empAuthenticationService.signed && userAuthenticationService.isAouthenticated" class="btn btn-secondary">&nbsp;
+          <input type="button" value="Register" routerLink="register" routerLinkActive="active-link" 
+          *ngIf="authenticationsService.signed && empAuthenticationService.signed && userAuthenticationService.isAouthenticated" class="btn btn-secondary">&nbsp;
+          <input type="button" value="Log Out" (click)="LogOut()" *ngIf="authenticationsService.logOut || empAuthenticationService.logOut || userAuthenticationService.logOut" class="btn btn-secondary">
+     </div>
+
+</div>

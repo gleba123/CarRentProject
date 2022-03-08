@@ -1,0 +1,21 @@
+<!-- Signin form that give us the option to connect by user / Emp /Manager -->
+
+<form #forminfo="ngForm">
+    <label for="nickname">Nick Name:</label>
+    <input class="form-control" #nickname="ngModel" placeholder="Please enter Nick Name" required pattern="^[a-zA-Z-0-9]*$" type="text"
+        [(ngModel)]="userLogIn.nickName" name="nickname">
+    <span *ngIf="nickname.errors?.pattern && nickname.touched">Nickname can not be with special Characters! </span>
+    <span *ngIf="nickname.errors?.required && nickname.touched">Missing NickName!</span><br><br>
+
+
+    <label for="password">Password:</label>
+    <input class="form-control" #password="ngModel" placeholder="Please enter password" required pattern="^[A-Z].*$" minlength="6"
+        type="password" [(ngModel)]="userLogIn.password" name="password">
+    <span *ngIf="password.errors?.required && password.touched">Missing Password! </span><br>
+    <span *ngIf="password.errors?.minlength && password.touched">password must be minimum 6 Characters long! </span><br>
+    <span *ngIf="password.errors?.pattern && password.touched">Password must start with a capital letter!
+    </span><br>
+
+    <input  [disabled]="!forminfo.form.valid" type="button" value="Submit" (click)="SignIn()" routerLink="/Home"><br>
+
+</form>

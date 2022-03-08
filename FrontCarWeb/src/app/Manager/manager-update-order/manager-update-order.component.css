@@ -1,0 +1,77 @@
+.mainButtonsBar{
+    position: fixed;
+    top:12%;
+    left:7px;
+}
+
+.deleteOrderForm{
+    position: fixed;
+    top: 3%;
+    left:5px;
+}
+
+.updateOrderFields{
+    position:fixed;
+    top:2%;
+    left:5px;
+}
+
+.updateOrderHeader{
+    position: fixed;
+    top:20%;
+    right:40%;
+}
+
+.addOrderForm{
+    position: fixed;
+    top:3%;
+}
+
+.Order-Update-Header{
+    text-align: center;
+}
+.Order-Number{
+    position:fixed;
+    top:25%;
+    left:45%;
+
+}
+
+.active-link{
+    color: orange;
+    font-weight: bold;
+}
+
+div{
+    margin-bottom: 10px;
+    margin-left: 715px;
+}
+
+table{
+    border: 1px solid black;
+}
+
+th{
+    border: 1px solid black;
+    
+ padding: 40px;
+
+}
+
+td{
+    border: 1px solid black;
+    text-align: center;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+}
+
+form{
+    margin-top:80px;
+    margin-left: 30px;
+    padding-bottom: 80px;
+}
+
+

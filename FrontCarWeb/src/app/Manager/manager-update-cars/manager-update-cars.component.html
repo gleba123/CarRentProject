@@ -1,0 +1,182 @@
+<!-- The Child Buttons -->
+
+<div class="MainButtonsBar">
+    <input #AddCar type="button" class="btn btn-secondary" value="Add" (click)="fun1(AddCar.value)" routerLinkActive="active-link">&nbsp;
+    <input #UpdateCar type="button" class="btn btn-secondary" value="Update" (click)="fun1(UpdateCar.value)" routerLinkActive="active-link">&nbsp;
+    <input #DeleteCar type="button" class="btn btn-secondary" value="Delete" (click)="fun1(DeleteCar.value)" routerLinkActive="active-link">
+</div>
+
+<!-- Show us the Add new car Field -->
+<form *ngIf="chooseAction=='Add'" class="addNewCarForm" #forminfo="ngForm">
+    <h3><u>Add New Car:</u></h3>
+    <p><u>Please Enter All The Fields:</u></p>
+    <input #carNum="ngModel" type="text" placeholder="CarNum" [(ngModel)]="carPost.CarNum" name="carNumber" required
+        pattern="^[0-9]*$" minlength="7" maxlength="9">
+    <span *ngIf="carNum.errors?.maxlength && carNum.touched"> Car Number Max 9 Numbers </span>
+    <span *ngIf="carNum.errors?.required && carNum.touched"> Missing Car Number! </span>
+    <span *ngIf="carNum.errors?.minlength && carNum.touched"> Car Number Must Be Minimum 7 Numbers long! </span>
+    <span *ngIf="carNum.errors?.pattern && carNum.touched"> Car Number Must Be numbers only!</span>&nbsp;
+
+    <input #Manufactor="ngModel" type="text" placeholder="Manufactor" [(ngModel)]="carPost.manufactor" name="manufactor"
+        required pattern="^[a-zA-Z ]*$">
+    <span *ngIf="Manufactor.errors?.pattern && Manufactor.touched"> Manufactor cant be with special Characters or
+        numbers! </span>
+    <span *ngIf="Manufactor.errors?.required && Manufactor.touched"> Missing Manufactor! </span>&nbsp;
+
+
+    <input #Km="ngModel" type="text" placeholder="km" [(ngModel)]="carPost.km" name="km" required pattern="^[0-9]*$">
+    <span *ngIf="Km.errors?.pattern && Km.touched"> Km can be Only Numbers!</span>
+    <span *ngIf="Km.errors?.required && Km.touched"> Missing Km! </span>&nbsp;
+
+
+    <input #quantity="ngModel" type="text" placeholder="Quantity" [(ngModel)]="carPost.quantity" name="quantity"
+        required pattern="^[0-9]*$" minlength="1" maxlength="2">
+    <span *ngIf="quantity.errors?.pattern && quantity.touched"> Quantity can be Only Numbers!</span>
+    <span *ngIf="quantity.errors?.required && quantity.touched"> Missing Quantity! </span>
+    <span *ngIf="quantity.errors?.minlength && quantity.touched"> quantity must be 1 Minimum! </span>
+    <span *ngIf="quantity.errors?.maxlength && quantity.touched"> quantity must be 1000000 Maximum! </span><br><br>
+
+    <input #Model="ngModel" type="text" placeholder="Model" [(ngModel)]="carPost.model" name="model" required
+        pattern="^[a-zA-Z ]*$">
+    <span *ngIf="Model.errors?.pattern && Model.touched"> Model cant be with special Characters or numbers! </span>
+    <span *ngIf="Model.errors?.required && Model.touched"> Missing Model!</span>&nbsp;
+
+    <input #Price="ngModel" type="text" placeholder="Daily Price" [(ngModel)]="carPost.Dprice" name="Price" required
+        pattern="^[0-9]*$" minlength="6" maxlength="6">
+    <span *ngIf="Price.errors?.pattern && Price.touched"> Price can be Only Numbers!</span>
+    <span *ngIf="Price.errors?.maxlength && Price.touched"> Price must be 999999 Maximum! </span>
+    <span *ngIf="Price.errors?.required && Price.touched"> Missing Price! </span>&nbsp;
+
+
+    <input #Dprice="ngModel" type="text" placeholder="DelayPrice" [(ngModel)]="carPost.delayPrice" name="delayPrice"
+        required pattern="^[0-9]*$" minlength="6" maxlength="6">
+    <span *ngIf="Dprice.errors?.pattern && Dprice.touched"> Price can be Only Numbers!</span>
+    <span *ngIf="Dprice.errors?.required && Dprice.touched"> Missing Price! </span>&nbsp;
+
+    <input #Year="ngModel" type="text" placeholder="Year" [(ngModel)]="carPost.year" name="year" required
+        pattern="^[0-9]*$">
+    <span *ngIf="Year.errors?.pattern && Year.touched"> Year can be Only Numbers!</span>
+    <span *ngIf="Year.errors?.required && Year.touched"> Missing Year! </span><br><br>
+
+    <label>Available: </label>
+    <select #Available="ngModel" [(ngModel)]="carPost.available" name="available" required>
+        <option>Yes</option>
+        <option>No</option>
+    </select>
+    <span *ngIf="Available.errors?.required && Available.touched"> Missing if car is available or not! </span>&nbsp;
+
+    <label>Rentable:</label>
+    <select #Rentable="ngModel" [(ngModel)]="carPost.rentable" name="rentable" required>
+        <option>Yes</option>
+        <option>No</option>
+    </select>
+    <span *ngIf="Rentable.errors?.required && Rentable.touched"> Missing if car is rentable or not! </span>&nbsp;
+
+    <button (click)="AddCarInfo()">Add</button>
+</form>
+
+<!-- the update car fields -->
+
+<form *ngIf="chooseAction=='Update'" #forminfo="ngForm">
+    <form class="carLicesUpdateForm">
+        <span class="Update-Car-Header">
+            <h3><u>Update Car:</u></h3>
+            <p><u>Please Enter Car Number For Update:</u></p>
+        </span>
+    </form>
+
+    <form class="updateCarLicensInput" #forminfoUpdate="ngForm">
+        <input #CarNumber="ngModel" type="search" placeholder="CarNum" [(ngModel)]="carPost.CarNum" name="carNumber"
+            required pattern="^[0-9]*$" minlength="7" maxlength="9">
+        <span *ngIf="CarNumber.errors?.maxlength && CarNumber.touched"> Car Number Max 9 Numbers </span>
+        <span *ngIf="CarNumber.errors?.required && CarNumber.touched"> Missing Car Number! </span>
+        <span *ngIf="CarNumber.errors?.minlength && CarNumber.touched"> Car Number Must Be Minimum 7 Numbers long!
+        </span>
+        <span *ngIf="CarNumber.errors?.pattern && CarNumber.touched"> Car Number Must Be numbers only!</span><br>
+    </form>
+
+    <form class="updateFieldsForm">
+        <span *ngIf="forminfoUpdate.form.valid">
+            <span><u><b>Enter the Field You Want To Change:</b></u></span><br>
+            <input #Menufactor="ngModel" type="text" placeholder="Manufactor" [(ngModel)]="carPost.manufactor"
+                name="manufactor" pattern="^[a-zA-Z ]*$">
+            <span *ngIf="Menufactor.errors?.pattern && Menufactor.touched"> Manufactor cant be with special Characters
+                or
+                numbers! </span>
+            <span *ngIf="Menufactor.errors?.required && Menufactor.touched"> Missing Manufactor! </span><br>
+
+            <input #Km="ngModel" type="text" placeholder="km" [(ngModel)]="carPost.km" name="km" pattern="^[0-9]*$">
+            <span *ngIf="Km.errors?.pattern && Km.touched"> Km can be Only Numbers!</span>
+            <span *ngIf="Km.errors?.required && Km.touched"> Missing Km! </span><br>
+
+            <input #quantity="ngModel" type="text" placeholder="Quantity" [(ngModel)]="carPost.quantity" name="quantity"
+                pattern="^[0-6]*$" minlength="1" maxlength="2">
+            <span *ngIf="quantity.errors?.pattern && quantity.touched"> Quantity can be Only Numbers!</span>
+            <span *ngIf="quantity.errors?.required && quantity.touched"> Missing Quantity! </span>
+            <span *ngIf="quantity.errors?.minlength && quantity.touched"> quantity must be 1 Minimum! </span>
+            <span *ngIf="quantity.errors?.maxlength && quantity.touched"> quantity must be 1000000 Maximum! </span><br>
+
+            <input #Model="ngModel" type="text" placeholder="Model" [(ngModel)]="carPost.model" name="model"
+                pattern="^[a-zA-Z ]*$">
+            <span *ngIf="Model.errors?.pattern && Model.touched"> Manufactor cant be with special Characters or numbers!
+            </span>
+            <span *ngIf="Model.errors?.required && Model.touched"> Missing Model!</span><br>
+
+            <input #Price="ngModel" type="text" placeholder="Daily Price " [(ngModel)]="carPost.Dprice" name="Price"
+                pattern="^[0-9]*$" minlength="6" maxlength="6">
+            <span *ngIf="Price.errors?.pattern && Price.touched"> Price can be Only Numbers!</span>
+            <span *ngIf="Price.errors?.maxlength && Price.touched"> quantity must be 999999 Maximum! </span>
+            <span *ngIf="Price.errors?.required && Price.touched"> Missing Price! </span><br>
+
+            <input #Dprice="ngModel" type="text" placeholder="DelayPrice" [(ngModel)]="carPost.delayPrice"
+                name="delayPrice" pattern="^[0-9]*$" minlength="6" maxlength="6">
+            <span *ngIf="Dprice.errors?.pattern && Dprice.touched"> Price can be Only Numbers!</span>
+            <span *ngIf="Dprice.errors?.required && Dprice.touched"> Missing Price! </span><br>
+
+            <input #Year="ngModel" type="text" placeholder="Year" [(ngModel)]="carPost.year" name="year"
+                pattern="^[0-9]*$">
+            <span *ngIf="Year.errors?.pattern && Year.touched"> Year can be Only Numbers!</span>
+            <span *ngIf="Year.errors?.required && Year.touched"> Missing Year! </span><br>
+            <div class="dropDownCarUpdate">
+
+                <label>Available:</label>
+                <select #Available="ngModel" [(ngModel)]="carPost.available" name="available">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+                <span *ngIf="Available.errors?.required && Available.touched"> Missing if car is available or not!
+                </span><br>
+
+                <label>Rentable:</label>
+                <select #Rentable="ngModel" [(ngModel)]="carPost.rentable" name="rentable">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+                <span *ngIf="Rentable.errors?.required && Rentable.touched"> Missing if car is Rentable or not!
+                </span>&nbsp;
+
+            </div>
+
+            <div class="SubmitUpdateButton">
+                <button (click)="UpdateCarInfo()" [disabled]="!forminfo.form.valid">Submit</button>
+            </div>
+
+        </span>
+    </form>
+</form>
+
+<!-- delete car -->
+<form *ngIf="chooseAction=='Delete'" class="deleteCarForm" #forminfo="ngForm">
+    <h3><u>Delete Car:</u></h3>
+    <p><u>Please Enter Car Licens:</u></p>
+    <label>Car Licens:</label>
+    <input [(ngModel)]="carPost.CarNum" #CarLices="ngModel" type="text" placeholder="Car Licens" name="CarNumber"
+        required pattern="^[0-9]*$" minlength="7" maxlength="9">
+    <span *ngIf="CarLices.errors?.maxlength && CarLices.touched"> Car Number Max 9 Numbers </span>
+    <span *ngIf="CarLices.errors?.required && CarLices.touched"> Missing Car Number! </span>
+    <span *ngIf="CarLices.errors?.minlength && CarLices.touched"> Car Number Must Be Minimum 7 Numbers long! </span>
+    <span *ngIf="CarLices.errors?.pattern && CarLices.touched"> Car Number Must Be numbers only!</span><br>
+
+    <button (click)="DeleteCarInfo()" [disabled]="!forminfo.form.valid">Submit</button>
+
+</form>

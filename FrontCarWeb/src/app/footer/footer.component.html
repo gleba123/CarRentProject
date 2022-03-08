@@ -1,0 +1,29 @@
+<!-- button that show us the chosen cars can be closed and open -->
+<button class="btn btn-secondary" (click)="onClickFav()">My Cars</button> 
+
+
+<!-- show us the table with the info of the chosen cars -->
+
+    <table *ngIf="Showfavorits" >
+        
+<thead class="headerFav">
+    <tr >
+        <th>Manufactor</th>
+        <th>Model</th>
+        <th>Price</th>
+        <th>picture</th>
+        </tr>
+</thead> 
+            <tbody class="tbody">
+        <tr class="TableInfo" *ngFor="let car of favorites">
+            <td>{{car.manufactor}}</td>
+            <td>{{car.model}}</td>
+            <td>{{car.dayPrice}}</td>
+            <td><img src='{{car.picture}}'></td>
+
+        </tr>
+    </tbody>
+
+    </table>
+
+

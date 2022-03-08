@@ -1,0 +1,204 @@
+<!-- child buttons of the user - show all the info & giive promotion to the manager do changes -->
+<div class="Main-Buttons">
+    <input class="btn btn-secondary" #SearchUser type="button" (click)="fun1(SearchUser.value)" value="Search user"
+        routerLinkActive="active-link">&nbsp;
+    <input class="btn btn-secondary" #addUser type="button" value="Add" (click)="fun1(addUser.value)" routerLinkActive="active-link">&nbsp;
+    <input class="btn btn-secondary" #updateUser type="button" value="Update" (click)="fun1(updateUser.value)" routerLinkActive="active-link">&nbsp;
+    <input class="btn btn-secondary" #DeleteUser type="button" value="Delete" (click)="fun1(DeleteUser.value)" routerLinkActive="active"
+        routerLinkActive="active-link">
+</div>
+
+<form class="MainForm">
+
+<!-- show us the search of user by id -->
+
+    <form class="SearchUserInput" #forminfo="ngForm" *ngIf="chooseAction=='Search user'">
+        <h3><u>Search User:</u></h3><br>
+        <p><u>Please Enter User ID:</u></p>
+
+        <input type="text" [(ngModel)]="id" #txtGetbytz="ngModel" placeholder=" Enter User ID" required
+            pattern="^[0-9]*$" minlength="9" maxlength="9" name="userTz"><br>
+        <span *ngIf="txtGetbytz.errors?.required && txtGetbytz.touched"> Missing ID! </span>
+        <span *ngIf="txtGetbytz.errors?.minlength && txtGetbytz.touched"> ID must be 9 Characters long! </span>
+        <span *ngIf="txtGetbytz.errors?.pattern && txtGetbytz.touched"> ID must be numbers only! </span><br>
+        <input [disabled]="!forminfo.form.valid" type="button" (click)="GetUserbyId(txtGetbytz.value)" value="Search">
+        <form class="searchUserTable"> 
+            <table *ngIf="UserProps">
+                <tr>
+                    <th>UserId</th>
+                    <th>UserTz</th>
+                    <th>NickName</th>
+                    <th>FullName</th>
+                    <th>Bday</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Role</th>
+                    <th>Picture</th>
+                </tr>
+                <tr>
+                    <td>{{UserProps.userId}}</td>
+                    <td>{{UserProps.userTz}}</td>
+                    <td>{{UserProps.nickName}}</td>
+                    <td>{{UserProps.fullName}}</td>
+                    <td>{{UserProps.bday}}</td>
+                    <td>{{UserProps.gender}}</td>
+                    <td>{{UserProps.email}}</td>
+                    <td>{{UserProps.password}}</td>
+                    <td>{{UserProps.role}}</td>
+                    <td><img src='{{UserProps.picture}}'></td>
+                </tr>
+            </table>
+        </form>
+    </form>
+
+<!-- the add fields -->
+    <form class="addNewUserForm" #forminfo="ngForm" *ngIf="chooseAction=='Add'">
+        <h3><u>Add New User:</u></h3>
+        <p><u>Please Enter User Values:</u></p>
+
+        <input type="text" [(ngModel)]="User.nickName" #Nickname="ngModel" placeholder="User Name" required
+            pattern="^[a-zA-Z-0-9]*$" name="nickName">
+        <span *ngIf="Nickname.errors?.required && Nickname.touched"> Missing User Name! </span>
+        <span *ngIf="Nickname.errors?.pattern && Nickname.touched"> User Name cant be with special charecters!
+        </span>
+
+        <input type="password" [(ngModel)]="User.password" #Password="ngModel" placeholder="Password" required
+            pattern="^[A-Z].*$" minlength="6" name="password">
+        <span *ngIf="Password.errors?.required && Password.touched">Missing Password! </span>
+        <span *ngIf="Password.errors?.minlength && Password.touched">password must be minimum 6 Characters long! </span>
+        <span *ngIf="Password.errors?.pattern && Password.touched">Password must start with a capital letter!</span>
+
+        <input type="text" [(ngModel)]="User.fullName" #FullName="ngModel" placeholder="Full Name" required
+            pattern="^[a-zA-Z ]*$" minlength="2" name="fullName">
+        <span *ngIf="FullName.errors?.pattern && FullName.touched">Full name can not be with special Characters or numbers! </span>
+        <span *ngIf="FullName.errors?.required && FullName.touched">Missing Full Name </span><br>
+
+        <input type="text" [(ngModel)]="User.userTz" #Id="ngModel" placeholder="Identity" required pattern="^[0-9]*$"
+            minlength="9" maxlength="9" name="userTz">
+        <span *ngIf="Id.errors?.required && Id.touched">Missing ID! </span>
+        <span *ngIf="Id.errors?.minlength && Id.touched">ID must be 9 Characters long! </span>
+        <span *ngIf="Id.errors?.pattern && Id.touched">ID must be numbers only!</span>
+
+        <input type="date" [(ngModel)]="User.bday" #Bday="ngModel" required name="bday">
+        <span *ngIf="Bday.errors?.required && Bday.touched">Missing Birth date </span>
+
+        <input type="text" [(ngModel)]="User.email" #Email="ngModel" placeholder="Email" required
+            pattern="^[a-zA-Z-0-9._%+-]+@[a-zA-Z-0-9.-]+\.[a-z]{2,4}$" name="email">
+        <span *ngIf="Email.errors?.pattern && Email.touched">please write an Email pattern! (a@gmail.com) </span>
+        <span *ngIf="Email.errors?.required && Email.touched">Missing Email </span><br>
+
+        <span>Gender </span>
+        <select #Gender="ngModel" required [(ngModel)]="User.gender" name="gender">
+            <option></option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+        <span *ngIf="Gender.errors?.required && Gender.touched">Missing gender</span>&nbsp;
+
+        <span>Role </span>
+        <select #Role=ngModel [(ngModel)]="User.role" required name="Role">
+            <option></option>
+            <option value="user">User</option>
+            <option value="host">Host</option>
+            <option value="employee">Employee</option>
+        </select>
+        <span *ngIf="Role.errors?.required && Role.touched">Missing Role</span>&nbsp;
+
+        <span>Choose Photo</span>
+        <input type="file" #Img placeholder="img">
+        <button [disabled]="!forminfo.form.valid" type="button" value="Submit" (click)="AddNewUser()">Submit</button>
+    </form>
+
+<!-- update fields: -->
+    <form class="updateUserForm" #forminfo="ngForm" *ngIf="chooseAction=='Update'">
+        <form class="Update-User-Header">
+            <h3><u>Update User:</u></h3>
+            <h3>Please enter user Identity:</h3>
+        </form>
+        <form class="Update-User-Tz" #forminfoUpdate="ngForm">
+            <input type="search" [(ngModel)]="User.userTz" #Id="ngModel" placeholder="Please enter Identity" required
+                pattern="^[0-9]*$" minlength="9" maxlength="9" name="tz">
+                <span *ngIf="Id.errors?.required && Id.touched">Missing ID! </span>
+                <span *ngIf="Id.errors?.minlength && Id.touched">ID must be 9 Characters long! </span>
+                <span *ngIf="Id.errors?.pattern && Id.touched">ID must be numbers only!</span><br>        
+        </form>
+
+        <form class="updateFieldsForm">
+
+        <span *ngIf="forminfoUpdate.form.valid" class="Update-Info">
+            <span><u><b>Enter the Field You Want To Change:</b></u></span><br>
+            <label>Full Name:</label>
+            <input type="text" [(ngModel)]="User.fullName" #fullName=ngModel placeholder="Full Name" 
+                pattern="^[a-zA-Z ]*$" minlength="2" name="Fullname">
+                <span *ngIf="fullName.errors?.pattern && fullName.touched">Full name can not be with special Characters or numbers! </span><br>
+
+            <label>NickName:</label>
+            <input type="text" [(ngModel)]="User.nickName" #Nickname="ngModel" placeholder="NickName" required
+                pattern="^[a-zA-Z-0-9]*$" name="Nickname">
+                <span *ngIf="Nickname.errors?.required && Nickname.touched"> Missing User Name! </span>
+                <span *ngIf="Nickname.errors?.pattern && Nickname.touched"> User Name cant be with special charecters!</span> <br>
+
+                <label>Password:</label>
+                <input type="password" [(ngModel)]="User.password" #Password="ngModel" placeholder="Password" required
+                    pattern="^[A-Z].*$" minlength="6" name="Password">
+                    <span *ngIf="Password.errors?.required && Password.touched">Missing Password! </span>
+                    <span *ngIf="Password.errors?.minlength && Password.touched">password must be minimum 6 Characters long! </span>
+                    <span *ngIf="Password.errors?.pattern && Password.touched">Password must start with a capital letter!</span><br>            
+
+            <span>Birth Date </span>
+            <input type="date" [(ngModel)]="User.bday" #Bday="ngModel" placeholder="Birth Date" required
+                name="Bday">
+                <span *ngIf="Bday.errors?.required && Bday.touched">Missing Birth date! </span><br>
+
+
+            <label>Email:</label>
+            <input type="text" [(ngModel)]="User.email" #Email="ngModel" placeholder="Email" required
+                pattern="^[a-zA-Z-0-9._%+-]+@[a-zA-Z-0-9.-]+\.[a-z]{2,4}$" name="Email">
+                <span *ngIf="Email.errors?.pattern && Email.touched">please write an Email pattern! (a@gmail.com) </span>
+                <span *ngIf="Email.errors?.required && Email.touched">Missing Email! </span><br>        
+
+            <label>Gender:</label>
+            <select #Gender="ngModel" required [(ngModel)]="User.gender" name="Gender">
+                <option></option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <span *ngIf="Gender.errors?.required && Gender.touched">Missing gender!</span>&nbsp;
+
+            <label>Role:</label>
+            <select #Role="ngModel" [(ngModel)]="User.role" required name="Role">
+                <option></option>
+                <option value="user">User</option>
+                <option value="host">Host</option>
+                <option value="employee">Employee</option>
+            </select>
+            <span *ngIf="Role.errors?.required && Role.touched">Missing Role!</span>&nbsp;
+
+            <label>Picture:</label>
+            <input type="file" #Img="ngModel" [(ngModel)]="User.picture" placeholder="img" name="Img"><br>
+
+            <button [disabled]="!forminfo.form.valid" type="button" value="Submit"
+                (click)="UpdateUser()">Submit</button><br>
+        </span>
+
+    </form>
+</form>
+
+<!-- delete field: -->
+    <form class="deleteUserForm" #forminfo="ngForm" *ngIf="chooseAction =='Delete'">
+        <h3><u>Delete User:</u></h3>
+        <p><u>Please enter user Identity:</u></p>
+
+        <input type="text" [(ngModel)]="User.userTz" #Id="ngModel" placeholder="Identity" required pattern="^[0-9]*$"
+            minlength="9" maxlength="9" name="id"><br>
+        <span *ngIf="Id.errors?.required && Id.touched">Missing ID! </span>
+        <span *ngIf="Id.errors?.minlength && Id.touched">ID must be 9 Characters long!</span>
+        <span *ngIf="Id.errors?.pattern && Id.touched">ID must be numbers only!</span><br>
+        <button [disabled]="!forminfo.form.valid" value="Submit" (click)="RemoveUser()">Submit</button><br>
+
+    </form>
+
+</form>

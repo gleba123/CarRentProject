@@ -1,0 +1,42 @@
+.headerFav{
+    position: fixed;
+    top: 76%;
+    left: 30%;
+}
+
+.tbody{
+    position: fixed;
+    top: 80%;
+    left: 30%;
+    height: 140px;       /* The height of the chosen cars form*/
+    overflow-y: auto;    /* Trigger vertical scroll*/
+    overflow-x: hidden;  /* Hide the horizontal scroll*/
+
+}
+button { /*Style and position for the show button of the chosen cars*/ 
+   position:fixed;
+   top:8%;
+   left:90%;
+   display: block;
+}
+
+th{ /*The style for the table of the chosen car header*/
+    border: 1px solid black;
+    text-align: center;
+ color: black;
+width:150px;
+}
+
+td{ /*The style for the table of the chosen car data row*/
+    border: 1px solid black;
+    text-align: center;
+    width: 150px;
+}
+
+img{ /* the width & height of the chosen car*/
+    width: 100px;
+    height: 100px;
+}
+
+
+

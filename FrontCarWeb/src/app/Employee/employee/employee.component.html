@@ -1,0 +1,53 @@
+<form>
+    <!-- show us the search fields tho show the emp what order the costumer have and if he already bring back the car or not -->
+    <form class="ShowhUserInfo" #forminfo="ngForm" >
+        <h3><u>Search User:</u></h3><br>
+        <p><u>Please Enter User ID:</u></p>
+    
+        <input type="text" [(ngModel)]="userTz" #txtGetbytz="ngModel" placeholder=" Enter Costumer ID" required pattern="^[0-9]*$"
+            minlength="9" maxlength="9" name="userTz"><br>
+        <span *ngIf="txtGetbytz.errors?.required && txtGetbytz.touched"> Missing ID! </span>
+        <span *ngIf="txtGetbytz.errors?.minlength && txtGetbytz.touched"> ID must be 9 Characters long! </span>
+        <span *ngIf="txtGetbytz.errors?.pattern && txtGetbytz.touched"> ID must be numbers only! </span><br>
+        <input  [disabled]="!forminfo.form.valid" type="button" (click)="GetOrderByUserId(txtGetbytz.value)" value="Search">
+    </form>
+    <form class="returnTableForm">
+
+        <table *ngIf="OrderProps">
+            <tr>
+                <th>User ID:</th>
+                <th>Order number:</th>
+                <th>Car Number:</th>
+                <th>Start Rent Date:</th>
+                <th>Return Date:</th>
+                <th>Real Return Date</th>
+    
+    
+    
+            </tr>
+            <tr *ngFor="let order of OrderProps">
+                <td>{{order.userTz}}</td>
+                <td>{{order.orderNum}}</td>
+                <td>{{order.carNum}}</td>
+                <td>{{order.startRentDate}}</td>
+                <td>{{order.returnDate}}</td>
+                <td>{{order.realReturnDate}}</td>
+    
+            </tr>
+        </table>
+    </form >
+<!-- field that connected with the return function to return car -->
+        <div class="returnCarDiv" *ngIf="txtGetbytz.value">
+
+            <h3><u>Return Car:</u></h3>
+            <p><u>Please Fill All The Fillds:</u></p>
+            <label>Car Number:</label>
+            <input #carNum [(ngModel)]="empReturn.carNum"  type="text" placeholder="Car number" name="carNumber"><br>
+            <label>Real Return Date:</label>
+            <input #RRD [(ngModel)]="empReturn.realReturnDate" type="date"  name="realReturn">
+            <button (click)="ReturnCarFunc()" type="submit">Submit</button>
+        </div>
+
+    </form>   
+
+

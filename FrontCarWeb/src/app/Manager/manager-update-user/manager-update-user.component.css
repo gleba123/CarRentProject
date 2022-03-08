@@ -1,0 +1,110 @@
+.deleteUserForm{
+    position: fixed;
+    top: 3%;
+    left:2%;
+}
+
+.updateFieldsForm{
+    display: inline-block;
+    position:fixed;
+    top:2%;
+    left: 3%;
+
+}
+
+.updateUserForm{
+    position: fixed;
+    left:41%;
+    top:25px;
+}
+
+.addNewUserForm{
+    position: fixed;
+    left:40px;
+    top:3%;
+}
+
+.SearchUserInput{
+    position:fixed;
+    top:20px;
+    left:40px;
+}
+
+.searchUserTable{
+    position:fixed;
+    left:250px;
+    top:47px;
+    font-size:x-small;
+}
+
+.MainForm{
+    overflow:auto;
+    height:100%;
+}
+.FormLabels{
+    position: absolute;
+    left: 40%;
+}
+.Update-User-Header{
+    text-align: center;
+
+}
+
+.Update-User-Tz{
+    position: fixed;
+    left:46%;
+    top:26%;
+}
+
+
+.active-link{
+    color: orange;
+    font-weight: bold;
+}
+
+.Main-Buttons{
+    position: absolute;
+    top:12%;
+    left:41%;
+
+}
+
+table{
+    border: 1px solid black;
+}
+
+th{
+    border: 1px solid black;
+    
+ padding: 40px;
+
+}
+
+td{
+    border: 1px solid black;
+    text-align: center;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+}
+
+form{
+    margin-top:80px;
+    padding-bottom: 80px;
+}
+
+
+
+.ChooseBar{
+    margin-left: 48%;
+}
+
+.ChooseBarHeader{
+    margin-left: 40%;
+    
+}
+
+
+

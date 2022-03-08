@@ -1,0 +1,52 @@
+<!-- fields that alow the costumer to add order -->
+<form class="newOrderForm" #forminfo="ngForm">
+    <h3><u>Add New Order:</u></h3>
+    <p><u>Please fill The Required Fields:</u></p>
+    <label>Please enter Car Number:</label>
+    <input #CarNum="ngModel" type="text" #carNumber="ngModel" [(ngModel)]="orderObject.carNum" placeholder="Car Number"
+        name="licanes" required pattern="^[0-9]*$" minlength="7" maxlength="9">
+    <span *ngIf="CarNum.errors?.maxlength && CarNum.touched"> Car Number Max 9 Numbers </span>
+    <span *ngIf="CarNum.errors?.required && CarNum.touched"> Missing Car Number! </span>
+    <span *ngIf="CarNum.errors?.minlength && CarNum.touched"> Car Number Must Be Minimum 7 Numbers long! </span>
+    <span *ngIf="CarNum.errors?.pattern && CarNum.touched"> Car Number Must Be numbers only!</span><br>
+
+    <label>Please enter Choose your Start Date:</label>
+    <input type="date" #StartDate="ngModel" [(ngModel)]="orderObject.startRentDate" name="start" required>
+    <span *ngIf="StartDate.errors?.required && StartDate.touched">Missing Start Rent Date! </span><br>
+
+    <label>Please enter Choose your Return Date:</label>
+    <input type="date" #ReturnDate="ngModel" [(ngModel)]="orderObject.returnDate" name="return" required>
+    <span *ngIf="ReturnDate.errors?.required && ReturnDate.touched">Missing Start Rent Date! </span><br>
+
+    <button [disabled]="!forminfo.form.valid" (click)="AddNewOrder(CarNum.value , StartDate.value , ReturnDate.value)"
+        type="submit">Sumbit</button>
+</form>
+
+<button class="btn btn-secondary" (click)="ShowOrders()">My Orders</button>
+
+<!-- show to the costumer all his history of orders -->
+<form class="userOrdersTable">
+
+    <table *ngIf="allMyOrders">
+        <thead class="headerClass">
+            <tr>
+                <th>User ID:</th>
+                <th>Order Number:</th>
+                <th>Car Licens:</th>
+                <th>Start Order Date:</th>
+                <th>Return Date:</th>
+            </tr>
+        </thead>
+        <tbody class="bodyClass">
+            <tr *ngFor="let i of allMyOrders">
+                <td>{{i.userTz}}</td>
+                <td>{{i.orderNum}}</td>
+                <td>{{i.carNum}}</td>
+                <td>{{i.startRentDate}}</td>
+                <td>{{i.returnDate}}</td>
+    
+            </tr>
+        </tbody>
+    </table>
+
+</form>

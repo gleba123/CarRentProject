@@ -1,0 +1,57 @@
+.MainFormTable{
+    position: fixed;
+    padding:40px;
+    left:25px;
+    
+
+}
+.MainDiv{
+    display: inline-block;
+    position: fixed;
+    top:15%;
+}
+
+th{
+    border: 1px solid black; 
+    width: 130px;
+    text-align: center;  
+}
+
+td{
+    border: 1px solid black;
+    text-align: center;
+    width: 131.8px;
+    color: black;
+    font-weight:bold;
+        
+}
+
+img{
+    width: 100px;
+    height: 100px;
+}
+
+
+.Data-row:hover{
+    background-color:#FF9933;
+}
+
+span{
+    position: relative;
+    left:45%;
+}
+thead, tbody { display: block; }
+
+tbody {
+    height: 200px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+
+.table {
+    border: 1px solid black;
+    position: relative;
+    left: 6%;
+    
+
+}

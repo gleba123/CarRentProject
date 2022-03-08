@@ -1,0 +1,40 @@
+
+.showUserLogedIn{
+    display: inline-block;
+    position:fixed;
+}
+
+.Header{
+    color:#be1558;
+    position:fixed;
+}
+
+.NavBar{
+    position:fixed;
+    top:50px;
+    left:20px;
+    display:inline-block;
+}
+
+h1{
+    display: inline-block;
+    padding-left: 40px;
+    font-size:35px;
+}
+h1:hover{
+    color: orange;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.active-link{
+    color: orange;
+    font-weight: bold;
+}
+
+
+span{
+    position: relative;
+    left: 90%;
+    line-height: 2em;
+}

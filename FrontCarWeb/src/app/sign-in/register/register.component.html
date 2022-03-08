@@ -1,0 +1,50 @@
+<!-- fields for the register page with vakidations: -->
+
+<form #forminfo="ngForm">
+    <label  for="nickname">Nick Name:</label>
+    <input #nickname="ngModel" class="form-control" [(ngModel)]="User.nickName" placeholder="Please enter Nick Name" required pattern="^[a-zA-Z-0-9]*$" type="text"  name="NickName">
+    <span *ngIf="nickname.errors?.pattern && nickname.touched">Nickname can not be with special Characters! </span>
+    <span *ngIf="nickname.errors?.required && nickname.touched">Missing NickName!</span>
+
+    <label for="password">Password:</label>
+    <input #password="ngModel" class="form-control" [(ngModel)]="User.password" placeholder="Please enter password" required pattern="^[A-Z].*$" minlength="6" type="password" name="Password">
+    <span *ngIf="password.errors?.required && password.touched">Missing Password! </span>
+    <span *ngIf="password.errors?.minlength && password.touched">password must be minimum 6 Characters long! </span>
+    <span *ngIf="password.errors?.pattern && password.touched">Password must start with a capital letter!</span>
+
+    <label for="userTz">ID:</label>
+    <input #userTz="ngModel" class="form-control" [(ngModel)]="User.userTz"  placeholder="Please enter your Identity" required pattern="^[0-9]*$" minlength="9" maxlength="9" type="password" name="ID">
+    <span *ngIf="userTz.errors?.required && userTz.touched">Missing ID! </span>
+    <span *ngIf="userTz.errors?.minlength && userTz.touched">ID must be 9 Characters long! </span>
+    <span *ngIf="userTz.errors?.pattern && userTz.touched">ID must be numbers only!</span>
+
+    <label for="fullName">Full Name:</label>
+    <input #fullName="ngModel" class="form-control" [(ngModel)]="User.fullName" placeholder="Please enter your Full Name" required pattern="^[a-zA-Z ]*$" type="text"  name="First">
+    <span *ngIf="fullName.errors?.pattern && fullName.touched">Full name can not be with special Characters or numbers! </span>
+    <span *ngIf="fullName.errors?.required && fullName.touched">Missing Full Name </span>
+
+    <label for="birthDate">Birth Date:</label>
+    <input #birthDate="ngModel" class="form-control" [(ngModel)]="User.bday" required type="date"  name="Bday">
+    <span *ngIf="birthDate.errors?.required && birthDate.touched">Missing Birth date </span>
+
+    <label for="email">Email:</label>
+    <input #email="ngModel" class="form-control" [(ngModel)]="User.email" placeholder="Please enter your Email" required pattern="^[a-zA-Z-0-9._%+-]+@[a-zA-Z-0-9.-]+\.[a-z]{2,4}$" type="text"  name="Email">
+    <span *ngIf="email.errors?.pattern && email.touched">please write an Email pattern! (a@gmail.com) </span>
+    <span *ngIf="email.errors?.required && email.touched">Missing Email </span><br>
+
+    <label for="gender">Gender:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+    <select #gender="ngModel" class="btn btn-danger dropdown-toggle" [(ngModel)]="User.gender" required  name="Gender">
+    <option></option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+    </select>
+    <span *ngIf="gender.errors?.required && gender.touched">Missing gender</span><br>
+
+    <input [disabled]="!forminfo.form.valid" type="button" value="Register"(click)="Register()" routerLink="/Home"><br>
+
+
+</form>
+
+
+  

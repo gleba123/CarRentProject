@@ -1,0 +1,62 @@
+<div class="MainDiv">
+<!-- main page that calculate for the none / signed user the cost of spacific car -->
+<span>
+    <label>Pick Rent Date To See Car Cost:</label><br>
+    <input type="date" #firstDate><br>
+    <input type="date" #secoundDate><br>
+    <label>Please Enter Car Licens:</label>
+    <input #CarNum type="text" placeholder="Car number">
+    <input type="button" value="ORDER" (click)="CalcRent(CarNum.value , firstDate.value , secoundDate.value)" class="btn btn-secondary">
+</span>
+
+<!-- search fields  -->
+<form class="MainFormTable">
+    <label>Search type car: </label>
+    <input type="search" placeholder="Please Enter Manufactor" name="search" [(ngModel)]="FilteringManufactor">&nbsp;
+    <label>Search by Car Model: </label>
+    <input type="search" placeholder="Please Enter Model" name="search" [(ngModel)]="FilteringModel">&nbsp;
+    <label>Search by Year: </label>
+    <input type="search" placeholder="Please Enter Year" name="search" [(ngModel)]="FilteringYear"><br><br>
+
+    <!-- The Main Car Table: -->
+    <table class="MainTable">
+        <thead>
+            
+            <tr>
+                <th>Car license</th>
+                <th>Manufactor</th>
+                <th>Model</th>
+                <th>Km</th>
+                <th>Year</th>
+                <th>Price</th>
+                <th>Delay Price</th>
+                <th>Available</th>
+                <th>Rentable</th>
+                <th>Picture</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let i of CarsProp|searchCarPipe:FilteringManufactor |searchByYear:FilteringYear |searchByModel:FilteringModel"
+                (click)="ChooseFunc(i)" class="Data-row">
+                <td>{{i.carNumber}}</td>
+                <td>{{i.manufactor}}</td>
+                <td>{{i.model}}</td>
+                <td>{{i.km}}</td>
+                <td>{{i.year}}</td>
+                <td>{{i.dayPrice}}</td>
+                <td>{{i.delayPrice}}</td>
+                <td>{{i.available}}</td>
+                <td>{{i.rentable}}</td>
+                <td><img src='{{i.picture}}'></td>
+            </tr>
+        </tbody>
+
+
+    </table>
+
+
+</form>
+
+
+</div>

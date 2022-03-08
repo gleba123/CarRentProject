@@ -1,0 +1,103 @@
+<!-- the child Buttons that gice us promotion to do changes / see orders -->
+<div class="mainButtonsBar">
+    <input type="button" #addOrder class="btn btn-secondary" value="Add" (click)="fun1(addOrder.value)" routerLinkActive="active-link">&nbsp;
+    <input type="button" #updateOrder class="btn btn-secondary" value="Update" (click)="fun1(updateOrder.value)" routerLinkActive="active-link">&nbsp;
+    <input type="button" #deleteOrder class="btn btn-secondary" value="Delete" (click)="fun1(deleteOrder.value)" routerLinkActive="active-link">
+</div>
+
+<!-- show us the add new order fields -->
+<form class="addOrderForm" #forminfo="ngForm" *ngIf="chooseAction =='Add'">
+    <h3><u>Add New Order:</u></h3>
+    <p><u>Please fill The Required Fields:</u></p>
+    <label>Please enter user ID:</label>
+    <input type="text" #userId="ngModel" [(ngModel)]="orderObject.userTz" placeholder="User ID" name="id" required
+        pattern="^[0-9]*$" minlength="9" maxlength="9">
+    <span *ngIf="userId.errors?.required && userId.touched">Missing ID! </span>
+    <span *ngIf="userId.errors?.minlength && userId.touched">ID must be 9 Characters long! </span>
+    <span *ngIf="userId.errors?.pattern && userId.touched">ID must be numbers only!</span><br>
+
+    <label>Please enter Car Number:</label>
+    <input type="text" #carNumber="ngModel" [(ngModel)]="orderObject.carNum" placeholder="Car Number" name="licanes"
+        required pattern="^[0-9]*$" minlength="7" maxlength="9">
+    <span *ngIf="carNumber.errors?.maxlength && carNumber.touched"> Car Number Max 9 Numbers </span>
+    <span *ngIf="carNumber.errors?.required && carNumber.touched"> Missing Car Number! </span>
+    <span *ngIf="carNumber.errors?.minlength && carNumber.touched"> Car Number Must Be Minimum 7 Numbers long! </span>
+    <span *ngIf="carNumber.errors?.pattern && carNumber.touched"> Car Number Must Be numbers only!</span><br>
+
+    <label>Please enter Choose your Start Date:</label>
+    <input type="date" #StartDate="ngModel" [(ngModel)]="orderObject.startRentDate" name="start" required>
+    <span *ngIf="StartDate.errors?.required && StartDate.touched">Missing Start Rent Date! </span><br>
+
+    <label>Please enter Choose your Return Date:</label>
+    <input type="date" #ReturnDate="ngModel" [(ngModel)]="orderObject.returnDate" name="return" required>
+    <span *ngIf="ReturnDate.errors?.required && ReturnDate.touched">Missing Return Date! </span><br>
+
+    <label>Please enter Real Return Date:</label>
+    <input type="date" #RRD="ngModel" [(ngModel)]="orderObject.realReturnDate" name="rrd"><br>
+
+    <button [disabled]="!forminfo.form.valid" (click)="AddNewOrder()" type="submit">Sumbit</button>
+</form>
+
+<!-- show the update fields -->
+<form #formInfo="ngForm" *ngIf="chooseAction == 'Update'">
+    <div class="updateOrderHeader">
+        <span class="Order-Update-Header">
+            <h3><u>Update Order:</u></h3>
+            <p><u>Please fill The Required Fields:</u></p>
+        </span>
+    </div>
+
+    <form class="Order-Number" #formInfoUpdate="ngForm">
+        <input #OrderNum="ngModel" type="search" placeholder="Enter Order Number" name="orderNum"
+            [(ngModel)]="orderObject.orderNum" #orderNum="ngModel" required pattern="^[0-9]*$" minlength="4"
+            maxlength="10000000">
+        <span *ngIf="OrderNum.errors?.minlength && OrderNum.touched"> Order Number must be 4 numbers Minimum! </span>
+        <span *ngIf="OrderNum.errors?.maxlength && OrderNum.touched"> Order Number must be 10000000 Maximum! </span>
+        <span *ngIf="OrderNum.errors?.required && OrderNum.touched">Missing Order Number! </span>
+        <span *ngIf="OrderNum.errors?.pattern && OrderNum.touched">Order Number must be numbers only!</span><br><br>
+    </form>
+
+    <form class="updateOrderFields">
+    <span *ngIf="formInfoUpdate.form.valid">
+        <p><u><b>Enter Field for Update:</b></u></p>
+        <label>Please enter Car Number:</label>
+        <input type="text" #carNumber="ngModel" [(ngModel)]="orderObject.carNum" placeholder="Car Number" name="licanes"
+            required pattern="^[0-9]*$" minlength="7" maxlength="9">
+        <span *ngIf="carNumber.errors?.maxlength && carNumber.touched"> Car Number Max 9 Numbers </span>
+        <span *ngIf="carNumber.errors?.required && carNumber.touched"> Missing Car Number! </span>
+        <span *ngIf="carNumber.errors?.minlength && carNumber.touched"> Car Number Must Be Minimum 7 Numbers long!</span>
+        <span *ngIf="carNumber.errors?.pattern && carNumber.touched"> Car Number Must Be numbers only!</span><br>
+
+        <label>Choose your Start Date:</label>
+        <input type="date" #StartDate="ngModel" [(ngModel)]="orderObject.startRentDate" name="start" required>
+        <span *ngIf="StartDate.errors?.required && StartDate.touched">Missing Start Rent Date! </span><br>
+
+        <label>Choose your Return Date:</label>
+        <input type="date" #ReturnDate="ngModel" [(ngModel)]="orderObject.returnDate" name="return" required>
+        <span *ngIf="ReturnDate.errors?.required && ReturnDate.touched">Missing Start Rent Date! </span><br>
+
+        <label>Choose your Real Return Date:</label>
+        <input type="date" #RRD="ngModel" [(ngModel)]="orderObject.realReturnDate" name="rrd"><br>
+
+        <button [disabled]="!formInfo.form.valid" (click)="UpdateOrder()" type="submit">Sumbit</button>
+    </span>
+</form>
+</form>
+
+
+<!-- delte order func -->
+<form class="deleteOrderForm" #formInfo="ngForm" *ngIf="chooseAction == 'Delete'">
+    <h3><u>Delete Order:</u></h3>
+    <p><u>Please fill The Required Field:</u></p>
+
+    <label>Please Enter Order Number:</label>
+    <input #OrderNum="ngModel" type="text" placeholder="Enter Order Number" name="delete" [(ngModel)]="orderObject.orderNum"
+        #deleteOrder="ngModel" required pattern="^[0-9]*$" minlength="4" maxlength="10000000">
+    <span *ngIf="OrderNum.errors?.minlength && OrderNum.touched"> Order Number must be 4 numbers Minimum! </span>
+    <span *ngIf="OrderNum.errors?.maxlength && OrderNum.touched"> Order Number must be 10000000 Maximum! </span>
+    <span *ngIf="OrderNum.errors?.required && OrderNum.touched">Missing Order Number! </span>
+    <span *ngIf="OrderNum.errors?.pattern && OrderNum.touched">Order Number must be numbers only!</span><br><br>
+
+    <button [disabled]="!formInfo.form.valid" (click)="DeleteOrder()" type="submit">Sumbit</button>
+
+</form>

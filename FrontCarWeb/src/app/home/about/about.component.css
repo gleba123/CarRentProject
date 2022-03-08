@@ -1,0 +1,17 @@
+.MainDiv{
+    position: fixed;
+    top: 20%;
+    display: inline-block;
+}
+
+.AboutHeader{
+    color:palevioletred;
+}
+.AboutNumber{
+    color:palevioletred;
+
+}
+.AboutText{
+    color:palevioletred;
+
+}

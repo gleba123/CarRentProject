@@ -1,0 +1,108 @@
+.mainManagerMenuDiv{
+    position:fixed;
+    top:6%;
+}
+
+.orderForm{
+    position: fixed;
+    left:20%;
+}
+
+
+.orderTableHeader{
+    position:fixed;
+    top:46%;
+}
+
+.orderTableBodyData{
+    position:fixed;
+    top:49%;
+    height:190px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.carsTableHeader{
+    position:fixed;
+    top:46%;
+    right:20px;
+}
+
+.searchCarsInput{
+    position:fixed;
+    right:20px;
+    top:38%;
+}
+
+.carsTableBodyData{
+    position:fixed;
+    top:49%;
+    height:190px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    right:5px;
+}
+
+.userTableHeader{
+    position:fixed;
+    top:46%;
+    right:20px;
+}
+
+.userTableBodyData{
+    position:fixed;
+    top:49%;
+    height:190px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    right:5px;
+}
+
+
+h1{
+    text-align: center;
+    padding-left: 40px;
+    font-size:35px;
+
+}
+
+.active-link{
+    color: orange;
+    font-weight: bold;
+}
+
+div{
+    margin-bottom: 10px;
+    margin-left: 41%;
+}
+
+table{
+    border: 1px solid black;
+}
+
+th{
+    border: 1px solid black;
+    width:150px;
+    text-align: center;
+    font-size:small;
+}
+
+td{
+    border: 1px solid black;
+    text-align: center;
+    font-size:small;
+    width:150px;
+}
+
+img{
+    width: 90px;
+    height: 90px;
+}
+
+form{
+    margin-top:80px;
+    margin-left: 30px;
+    padding-bottom: 80px;
+}
+
+
